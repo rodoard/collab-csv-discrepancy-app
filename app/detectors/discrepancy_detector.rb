@@ -33,7 +33,7 @@ class DiscrepancyDetector
     subscriber_count: DiscrepancyDetectors::SubscriberCount
   }
   def set_detectors concern
-    @detectors = case concern.to_sym
+    @detectors = case concern&.to_sym
     when :channel_ownership
       DETECTORS.values_at(:channel_ownership)
     when :subscriber_count

@@ -7,11 +7,11 @@ window.Home = {
     function handleFiles(initialPageLoad) {
       const fileList = this.files || csvFiles.files; 
       if (!fileList) return
-      if (fileList.length < 2 || fileList.length > 2) {
-        if (initialPageLoad !== true) setMessage("Exactly 2 files are required.")
+      if (fileList.length < 2 ) {
+        if (initialPageLoad !== true) setMessage("At least 2 files are required.")
         disableSubmit()
       }
-       if (fileList.length == 2) {
+       if (fileList.length >= 2) {
         clearMessage()
         enableSubmit()
       }
