@@ -8,7 +8,7 @@ class DataControllerTest < ActionDispatch::IntegrationTest
   test "returns error when number of upload files is less than two" do
     post "/data/csv", params:{
       csv: {
-        files: [csv_data1]
+        files: get_uploaded_csv_file(["discrepancy_data_1.csv"])
       }
     }
     assert_response :bad_request
@@ -16,7 +16,7 @@ class DataControllerTest < ActionDispatch::IntegrationTest
 
   test "handles invalid params " do
     post "/data/csv", params:{
-      files: [csv_data1]
+      files: ["discrepancy_data_1.csv"]
     }
     assert_response :bad_request
   end
@@ -24,7 +24,7 @@ class DataControllerTest < ActionDispatch::IntegrationTest
   test "returns all discrepancies" do
     post "/data/csv", params:{
       csv: {
-        files: [csv_data1, csv_data2]
+        files: get_uploaded_csv_file(["discrepancy_data_1.csv", "discrepancy_data_2.csv", "discrepancy_data_3.csv", "discrepancy_data_4.csv"])
       }
     }
     expected = all_discrepancies
@@ -36,7 +36,7 @@ class DataControllerTest < ActionDispatch::IntegrationTest
   test "returns subscriber count discrepancies " do
     post "/data/csv", params:{
       csv: {
-        files: [csv_data1, csv_data2],
+        files: get_uploaded_csv_file(["discrepancy_data_1.csv", "discrepancy_data_2.csv", "discrepancy_data_3.csv", "discrepancy_data_4.csv"]),
         concern: :subscriber_count
       }
     }
@@ -50,8 +50,8 @@ class DataControllerTest < ActionDispatch::IntegrationTest
   test "returns channel owner discrepancies " do
     post "/data/csv", params:{
       csv: {
-        files: [csv_data1, csv_data2],
-        concern: :channel_owner
+        files: get_uploaded_csv_file(["discrepancy_data_1.csv", "discrepancy_data_2.csv", "discrepancy_data_3.csv", "discrepancy_data_4.csv"]),
+        concern: :channel_ownership
       }
     }
     expected = channel_ownership_discrepancies

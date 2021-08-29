@@ -4,7 +4,7 @@ class DataController < ApplicationController
   def csv
     files = Uploads.get_uploaded(params[:csv][:files])
     concern = params[:csv][:concern]
-    csv_merged = CsvMerger.merge(files[0], files[1])
+    csv_merged = CsvMerger.merge(*files)
     models = DiscrepancyCsvParser.parse(csv_merged)
     @discrepancies = DiscrepancyDetector.new(models).detect(concern: concern).discrepancies
   end
