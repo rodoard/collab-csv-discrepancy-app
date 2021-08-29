@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.font-smaller {
+  font-size:smaller; 
+}
+#csv-files-help-messages {
+  float:right;
+  font-style:italic; 
+  color:red
+}

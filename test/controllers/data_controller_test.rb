@@ -11,7 +11,13 @@ class DataControllerTest < ActionDispatch::IntegrationTest
         files: [csv_data1]
       }
     }
-    puts @response.body.inspect
+    assert_response :bad_request
+  end
+
+  test "handles invalid params " do
+    post "/data/csv", params:{
+      files: [csv_data1]
+    }
     assert_response :bad_request
   end
 

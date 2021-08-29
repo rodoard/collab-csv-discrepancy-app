@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  post "/data/csv",  to: 'data#csv'
+  root to: 'home#index', as: :home
+  post "/data/csv",  to: 'data#csv', as: :upload_csv
 end
